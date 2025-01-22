@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Controle de Baias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .form-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .grid-baias {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .baia {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .alerta {
+            background-color: #ff4444;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Controle de Baias</h1>
+
+        <!-- Formulário de Cadastro -->
+        <div class="form-section">
+            <h2>Cadastrar Nova Ocupação</h2>
+            <form action="processar_baias.php" method="POST">
+                <div class="form-group">
+                    <label>Número da Baia:</label>
+                    <input type="number" name="baia" required min="1" max="6">
+                </div>
+                <div class="form-group">
+                    <label>Nome do Cavalo:</label>
+                    <input type="text" name="cavalo" required>
+                </div>
+                <div class="form-group">
+                    <label>Proprietário:</label>
+                    <input type="text" name="proprietario" required>
+                </div>
+                <div class="form-group">
+                    <label>Cuidador:</label>
+                    <input type="text" name="cuidador" required>
+                </div>
+                <div class="form-group">
+                    <label>Quantidade de Feno (kg):</label>
+                    <input type="number" name="feno" required>
+                </div>
+                <div class="form-group">
+                    <label>Quantidade de Ração (kg):</label>
+                    <input type="number" name="racao" required>
+                </div>
+                <div class="form-group">
+                    <label>Valor Mensal:</label>
+                    <input type="number" name="valor_mensal" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label>Data de Vencimento:</label>
+                    <input type="date" name="vencimento" required>
+                </div>
+                <button type="submit" name="cadastrar">Cadastrar</button>
+            </form>
+        </div>
+
+        <!-- Formulário de Registro de Consumo Diário -->
+        <div class="form-section">
+            <h2>Registrar Consumo Diário</h2>
+            <form action="processar_baias.php" method="POST">
+                <div class="form-group">
+                    <label>Número da Baia:</label>
+                    <input type="number" name="baia_consumo" required min="1" max="6">
+                </div>
+                <div class="form-group">
+                    <label>Feno Utilizado (kg):</label>
+                    <input type="number" name="feno_usado" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label>Ração Utilizada (kg):</label>
+                    <input type="number" name="racao_usada" step="0.1" required>
+                </div>
+                <button type="submit" name="registrar_consumo">Registrar Consumo</button>
+            </form>
+        </div>
+
+        <!-- Seção de Visualização de Baias -->
+        <div class="grid-baias" id="visualizacao-baias">
+            <!-- As baias serão preenchidas via JavaScript/PHP -->
+        </div>
+    </div>
+</body>
+</html>
